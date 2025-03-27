@@ -28,7 +28,7 @@ private:
 
     void printState(int philosopherID, const string &action) {
         lock_guard<mutex> lock(consoleMutex);
-        cout << "Philosopher " << philosopherID << " " << action << endl;
+        cout << "Philosopher " << philosopherID + 1 << " " << action << endl;
     }
 
     void philosopherBehavior(int ID) {
@@ -47,10 +47,10 @@ private:
             int secondFork = max(ID, (ID+1) % numOfPhilosophers);
 
             forks[firstFork]->lock();
-            printState(ID, "picked up fork" + to_string(firstFork));
+            printState(ID, "picked up fork " + to_string(firstFork + 1));
 
             forks[secondFork]->lock();
-            printState(ID, "picked up fork" + to_string(secondFork));
+            printState(ID, "picked up fork " + to_string(secondFork + 1));
 
             // eating
             states[ID] = PhilosopherState::EATING;
@@ -58,17 +58,17 @@ private:
             this_thread::sleep_for(chrono::milliseconds(randomDelay(1000, 10000)));
 
             // put down forks when stops eating
+            printState(ID, "put down fork " + to_string(secondFork));
             forks[secondFork]->unlock();
-            printState(ID, "put down fork" + to_string(secondFork));
 
+            printState(ID, "put down fork " + to_string(firstFork));
             forks[firstFork]->unlock();
-            printState(ID, "put down fork" + to_string(firstFork));
         }
     }
 
 public:
     DiningPhilosophers(int n):numOfPhilosophers(n), states(n, PhilosopherState::THINKING) {
-        for(int i = 1; i < n+1; i++) {
+        for(int i = 0; i < n; i++) {
             forks.emplace_back(make_unique<mutex>());
         }
     }
@@ -76,8 +76,8 @@ public:
 
     void start() {
         vector<thread> philosopherThreads;
-        for (int i = 1; i < numOfPhilosophers+1; i++) {
-            philosopherThreads.emplace_back(thread(philosopherBehavior, i));
+        for (int i = 0; i < numOfPhilosophers; i++) {
+            philosopherThreads.emplace_back([this, i]()-> void {philosopherBehavior(i);});
         }
         for (auto& pt : philosopherThreads) {
             pt.join();
