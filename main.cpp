@@ -65,10 +65,10 @@ private:
             this_thread::sleep_for(chrono::milliseconds(randomDelay(1000, 10000)));
 
             // put down forks in reverse when stops eating
-            printState(ID, "put down fork " + to_string(secondFork));
+            printState(ID, "put down fork " + to_string(secondFork + 1));
             forks[secondFork]->unlock();
 
-            printState(ID, "put down fork " + to_string(firstFork));
+            printState(ID, "put down fork " + to_string(firstFork + 1));
             forks[firstFork]->unlock();
         }
     }
