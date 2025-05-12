@@ -1,5 +1,7 @@
 #ifndef COMMON_H
 #define COMMON_H
+#include <condition_variable>
+#include <queue>
 
 using namespace std;
 
@@ -15,11 +17,25 @@ struct Message {
 
 class MessageQueue {
 private:
-
+    mutex mtx;
+    queue<Message> messages;
+    condition_variable cv;
 public:
-    void push(const Message & msg);
+    void push(const Message & msg) {
+        lock_guard<mutex> lock(mtx);
+        messages.push(msg);
+        cv.notify_all();
+    }
 
-    bool pop(const Message & msg);
+    bool pop(Message & msg) {
+        lock_guard<mutex> lock(mtx);
+        if (messages.empty()) {
+            return false;
+        }
+        msg = messages.front();
+        messages.pop();
+        return true;
+    }
 };
 
 #endif //COMMON_H

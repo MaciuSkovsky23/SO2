@@ -1,10 +1,12 @@
-#include <format>
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <mutex>
+#include <algorithm>
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <chrono>
+#include <ctime>
 #include <sstream>
 #include "common.h"
 
@@ -44,7 +46,7 @@ private:
         string clientName = "Client" + to_string(clientSocket);
 
         while (running) {
-            int bytesReceived = recv(clientSocket, buffer, MAX_MSG_LEN, 0);
+            int bytesReceived = recv(clientSocket, buffer, MAX_MSG_LEN-1, 0);
             if (bytesReceived <= 0) {
                 break;
             }

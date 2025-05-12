@@ -1,2 +1,5 @@
 # ninja log v6
-2	1671	7685826874457337	CMakeFiles/SO2_proj2.dir/server.cpp.obj	ac6d42a3da3f2234
+5	1918	7687667845731492	CMakeFiles/SO2_proj2.dir/server.cpp.obj	f92a6c9b189e87bc
+1	212	7687678580582600	build.ninja	c695285f007618f4
+4	1250	7687674140444117	CMakeFiles/SO2_proj2.dir/client.cpp.obj	47e6f29a27116a03
+5	158	7687677912174567	SO2_proj2.exe	b0df96c3c93618d6

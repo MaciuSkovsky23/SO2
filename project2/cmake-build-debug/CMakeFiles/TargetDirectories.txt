@@ -1,3 +1,4 @@
-C:/Users/macie/CLionProjects/SO2_proj2/cmake-build-debug/CMakeFiles/SO2_proj2.dir
-C:/Users/macie/CLionProjects/SO2_proj2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/macie/CLionProjects/SO2_proj2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/macie/Desktop/SO2/project2/cmake-build-debug/CMakeFiles/SO2_proj2.dir
+C:/Users/macie/Desktop/SO2/project2/cmake-build-debug/CMakeFiles/client.dir
+C:/Users/macie/Desktop/SO2/project2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/macie/Desktop/SO2/project2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
